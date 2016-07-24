@@ -1,0 +1,88 @@
+{% extends 'MainBundle::layout.html.twig' %}
+
+{% block layoutTitle %}
+    Üyeler Ekranı
+{% endblock %}
+{% block layoutTitleSmall %}
+    Bu ekran sayesinde yeni bir üye kaydı açabilir,bunları görebilir düzenleyebilir yahut silebilirsiniz
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('main-page') }}"><i class="fa fa-dashboard"></i> Üye Ekranları</a></li>
+        <li><a href="{{ path('create-user') }}"><i class="fa fa-users"></i>Üyeler Listesi</a></li>
+    </ol>
+{% endblock %}
+
+{% block tipTitle %}
+    <p>Burası oluşturduğunuz üyeleri görebildiğiniz ekrandır.Bu ekran üzerinden silme veya güncelleme işlemlerini
+        gerçekleştirebilirsiniz.</p>
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Üyeler Listesi</h3>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <th>Numara</th>
+                            <th>Rol</th>
+                            <th>Ad</th>
+                            <th>Soyad</th>
+                            <th>Email</th>
+                            <th>Tarih</th>
+                            <th>Durum</th>
+                        </tr>
+
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.surname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.createdDate |date("d-m-y") }}</td>
+                            <td>
+                                <span class=" {{ user.isActive ? "label label-success" : "label label-danger" }}">{{ user.isActive ? "Aktif":"Pasif" }}</span>
+                            </td>
+                            <td>
+                                <a href="{{ path('remove-user',{id:user.id}) }}"><i class="fa fa-trash"
+                                                                                    aria-hidden="true"></i></a>
+                            </td>
+                            <td>
+                                <a href="{{ path('update-user',{id:user.id}) }}"><i class="fa fa-pencil"
+                                                                                    aria-hidden="true"></i></a>
+                            </td>
+                        <tr>
+                            {% endfor %}
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block javascript %}
+    <!--active navigation menu option-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var target_element = $('.sidebar-menu > #user-info');
+            $(target_element).addClass('active');
+
+            target_element = null;
+            target_element = $('#user-info #list-user');
+            $(target_element).addClass('active');
+        });
+    </script>
+{% endblock %}

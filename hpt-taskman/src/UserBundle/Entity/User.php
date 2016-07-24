@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="tm_users")
  * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
  */
 class User
@@ -40,7 +40,7 @@ class User
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $username;
 
     /**
      * @var string
@@ -66,7 +66,7 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_date", type="datetimetz")
+     * @ORM\Column(name="created_date", type="datetime")
      */
     private $createdDate;
 
@@ -83,6 +83,13 @@ class User
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Role")
+     * @ORM\JoinColumn(name="roleId", referencedColumnName="id")
+     */
+    private $role;
 
 
     /**
@@ -150,7 +157,7 @@ class User
      *
      * @return User
      */
-    public function setName($name)
+    public function setUserName($name)
     {
         $this->name = $name;
 
@@ -162,7 +169,7 @@ class User
      *
      * @return string
      */
-    public function getName()
+    public function getUserName()
     {
         return $this->name;
     }

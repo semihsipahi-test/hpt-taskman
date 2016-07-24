@@ -10,13 +10,13 @@
 {% block breadcrumb %}
     <ol class="breadcrumb">
         <li><a href="{{ path('main-page') }}"><i class="fa fa-dashboard"></i> Üye Ekranları</a></li>
-        <li><a href="{{ path('create-user') }}"><i class="fa fa-user"></i>Yeni Üye Kaydı</a></li>
+        <li><a href="{{ path('create-user') }}"><i class="fa fa-user"></i>Üye Kaydı Güncelle</a></li>
     </ol>
 {% endblock %}
 
 {% block tipTitle %}
-    <p>Burası yeni üye oluşturabileceğiniz bir ekrandır.Bu ekran üzerinden üyeler oluşturur daha sonra yeni bir takım
-        kaydı açıp yahut mevcut takımlara bu üyeleri çağırabilirsiniz.</p>
+    <p>Burası mevcut üyelerin bilgilerini güncelleyebileceğiniz bir alandır.Değiştirmek istediğiniz üyenin bilgilerini
+        doğrulayıp kaydet butonuna basmanız yeterli olucaktır.</p>
 {% endblock %}
 
 {% block content %}
@@ -24,7 +24,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Yeni üye kaydı</h3>
+                    <h3 class="box-title">Üye Kaydı Güncelleme</h3>
                 </div>
                 <form role="form" method="post" action="{{ path('create-user-post') }}">
                     <div class="box-body">
@@ -32,30 +32,30 @@
                             <label>Rol</label>
                             <select class="form-control" name="role">
                                 {% for role in roles %}
-                                    <option value="{{ role.id }}">{{ role.name }}</option>
+                                    <option selected="{{ role.id }}" value="{{ role.id }}">{{ role.name }}</option>
                                 {% endfor %}
                             </select>
                         </div>
                         <div class="form-group">
                             <label>Adı</label>
-                            <input type="text" class="form-control" name="name" required/>
+                            <input type="text" class="form-control" name="{{ user.name }}" value="{{ user.name }}"/>
                         </div>
                         <div class="form-group">
                             <label>Soyadı</label>
-                            <input type="text" class="form-control" name="surname" required/>
+                            <input type="text" class="form-control" name="{{ user.surname }}" value="{{ user.surname }}"/>
                         </div>
                         <div class="form-group">
                             <label>Şifre</label>
-                            <input type="text" class="form-control" name="password" required/>
+                            <input type="text" class="form-control" name="{{ user.password }}" value="{{ user.password }}"/>
                         </div>
                         <div class="form-group">
                             <label>E-Posta</label>
-                            <input type="text" class="form-control" name="email" required/>
+                            <input type="text" class="form-control" name="{{ user.email }}" value="{{ user.email }}"/>
                         </div>
 
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" name="is_active">
+                                <input type="checkbox" name="{{ user.isActive }}" value="{{ user.isActive }}">
                                 Aktif
                             </label>
                         </div>
