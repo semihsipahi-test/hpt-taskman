@@ -1,3 +1,8 @@
+main:
+    resource: "@MainBundle/Controller/DefaultController.php"
+    prefix:   /
+    type:     annotation
+
 app:
     resource: "@AppBundle/Controller/"
     type:     annotation
