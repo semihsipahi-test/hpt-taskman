@@ -1,4 +1,24 @@
 {% extends 'MainBundle::layout.html.twig' %}
+
+{% block layoutTitle %}
+    Üyeler Ekranı
+{% endblock %}
+{% block layoutTitleSmall %}
+    Bu ekran sayesinde yeni bir üye kaydı açabilir,bunları görebilir düzenleyebilir yahut silebilirsiniz
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('main-page') }}"><i class="fa fa-dashboard"></i> Üye Ekranları</a></li>
+        <li><a href="{{ path('create-user') }}"><i class="fa fa-user"></i>Yeni Üye Kaydı</a></li>
+    </ol>
+{% endblock %}
+
+{% block tipTitle %}
+    <p>Burası yeni üye oluşturabileceğiniz bir ekrandır.Bu ekran üzerinden üyeler oluşturur daha sonra yeni bir takım
+        kaydı açıp yahut mevcut takımlara bu üyeleri çağırabilirsiniz.</p>
+{% endblock %}
+
 {% block content %}
     hello create user page
 {% endblock %}
