@@ -24,6 +24,9 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
 <body class="hold-transition skin-blue layout-boxed sidebar-mini">
@@ -180,6 +183,13 @@
 
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
+                <li class="header">Ana Yönetim Ekranı</li>
+                <li class="treeview" id="general-info">
+                    <a href="{{ path('main-page') }}">
+                        <i class="fa fa-suitcase"></i>
+                        <span>Genel Bilgilendirme</span>
+                    </a>
+                </li>
                 <li class="header">Proje Ekranları</li>
                 <li class="treeview">
                     <a href="#">
@@ -222,14 +232,14 @@
                         <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Ekip Listeleri </a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview" id="user-info">
                     <a href="#">
                         <i class="fa fa-user"></i>
                         <span>Üyeler</span>
                     </a>
 
                     <ul class="treeview-menu">
-                        <li><a href="top-nav.html"><i class="fa fa-circle-o"></i> Yeni Üye Oluştur </a></li>
+                        <li id="create-user"><a href="{{ path('create-user') }}"><i class="fa fa-circle-o"></i> Yeni Üye Oluştur </a></li>
                         <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Üye Listeleri </a></li>
                     </ul>
                 </li>
@@ -284,6 +294,9 @@
     </footer>
 </div>
 <!-- ./wrapper -->
+
+{% block javascript %}
+{% endblock %}
 
 <!-- jQuery 2.2.0 -->
 <script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script>
