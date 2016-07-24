@@ -3,3 +3,15 @@
 {% block content %}
     Hello World!
 {% endblock %}
+
+{% block javascript %}
+
+    <!--active navigation menu option-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var target_element = $('.sidebar-menu > #general-info');
+            $(target_element).addClass('active');
+        });
+    </script>
+
+{% endblock %}

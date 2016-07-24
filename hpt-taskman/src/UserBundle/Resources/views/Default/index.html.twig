@@ -2,3 +2,17 @@
 {% block content %}
     hello create user page
 {% endblock %}
+
+{% block javascript %}
+    <!--active navigation menu option-->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var target_element = $('.sidebar-menu > #user-info');
+            $(target_element).addClass('active');
+
+            target_element = null;
+            target_element = $('#user-info #create-user');
+            $(target_element).addClass('active');
+        });
+    </script>
+{% endblock %}
