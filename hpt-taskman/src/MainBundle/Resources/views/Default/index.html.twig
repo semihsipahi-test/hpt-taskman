@@ -1,5 +1,23 @@
 {% extends 'MainBundle::layout.html.twig' %}
 
+{% block layoutTitle %}
+    Genel Yönetim Ekranı
+{% endblock %}
+{% block layoutTitleSmall %}
+    Bu ekran sayesinde projeleriniz üyeleriniz ve ekipleriniz ile ilgili bazı kısa bilgilere ulaşabilirsiniz.
+{% endblock %}
+
+{% block breadcrumb %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('main-page') }}"><i class="fa fa-dashboard"></i> Genel Bilgilendirme</a></li>
+    </ol>
+{% endblock %}
+
+{% block tipTitle %}
+    <p>Burası genel yönetim ekranıdır.Sizlere uygulama hakkında kısa bilgiler vererek doğru şekilde yönlendirmeye
+        çalışır.</p>
+{% endblock %}
+
 {% block content %}
     Hello World!
 {% endblock %}

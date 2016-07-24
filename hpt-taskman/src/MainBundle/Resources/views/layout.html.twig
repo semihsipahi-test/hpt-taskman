@@ -239,7 +239,8 @@
                     </a>
 
                     <ul class="treeview-menu">
-                        <li id="create-user"><a href="{{ path('create-user') }}"><i class="fa fa-circle-o"></i> Yeni Üye Oluştur </a></li>
+                        <li id="create-user"><a href="{{ path('create-user') }}"><i class="fa fa-circle-o"></i> Yeni Üye
+                                Oluştur </a></li>
                         <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Üye Listeleri </a></li>
                     </ul>
                 </li>
@@ -257,24 +258,23 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Boxed Layout
-                <small>Blank example to the boxed layout</small>
+                {% block layoutTitle %}
+                {% endblock %}
+                <small>
+                    {% block layoutTitleSmall %}
+                    {% endblock %}
+                </small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Layout</a></li>
-                <li class="active">Boxed</li>
-            </ol>
+            {% block breadcrumb %}
+            {% endblock %}
         </section>
 
         <!-- Main content -->
         <section class="content">
             <div class="callout callout-info">
                 <h4>Tip!</h4>
-
-                <p>Add the layout-boxed class to the body tag to get this layout. The boxed layout is helpful when
-                    working on
-                    large screens because it prevents the site from stretching very wide.</p>
+                {% block tipTitle %}
+                {% endblock %}
             </div>
 
             {% block content %}
