@@ -76,32 +76,14 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $rsm = new ResultSetMapping();
+        $qb = $em->createQueryBuilder();
+        $users = $qb
+            ->select(array('u', 'r'))
+            ->from('UserBundle:User', 'u')
+            ->join('u.role', 'r')->getQuery()->getResult();
 
-        $rsm->addEntityResult('UserBundle:User', 'u');
-        $rsm->addFieldResult('u', 'id', 'id');
-        $rsm->addFieldResult('u', 'username', 'username');
-        $rsm->addFieldResult('u', 'surname', 'surname');
-        $rsm->addFieldResult('u', 'email', 'email');
-        $rsm->addFieldResult('u', 'createdDate', 'createdDate');
-        $rsm->addFieldResult('u', 'isActive', 'isActive');
-
-        $rsm->addJoinedEntityResult('UserBundle:Role', 'r', 'u', 'role');
-        $rsm->addFieldResult('r', 'rolename', 'rolename');
-
-        $sql = 'Select 
-                u.id,
-                u.username,
-                u.surname,
-                u.email,
-                u.created_date,
-                u.is_active,
-                r.rolename
-                From tm_users as u' . ' inner join tm_roles as r on u.role_id = r.id';
-
-        $query = $em->createNativeQuery($sql, $rsm);
-        $user = $query->getResult();
-
-        return $this->render('UserBundle:Default:user-list.html.twig', ['users' => $user]);
+        var_dump($users[0]);
+        exit;
+        return $this->render('UserBundle:Default:user-list.html.twig', ['users' => $users]);
     }
 }
