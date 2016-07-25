@@ -40,7 +40,7 @@ class User
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $username;
+    private $name;
 
     /**
      * @var string
@@ -87,7 +87,7 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="roleId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
 
@@ -157,7 +157,7 @@ class User
      *
      * @return User
      */
-    public function setUserName($name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -169,7 +169,7 @@ class User
      *
      * @return string
      */
-    public function getUserName()
+    public function getName()
     {
         return $this->name;
     }
