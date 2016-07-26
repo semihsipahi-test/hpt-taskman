@@ -80,10 +80,8 @@ class DefaultController extends Controller
         $users = $qb
             ->select(array('u', 'r'))
             ->from('UserBundle:User', 'u')
-            ->join('u.role', 'r')->getQuery()->getResult();
+            ->join('u.role', 'r')->getQuery()->execute();
 
-        var_dump($users[0]);
-        exit;
         return $this->render('UserBundle:Default:user-list.html.twig', ['users' => $users]);
     }
 }

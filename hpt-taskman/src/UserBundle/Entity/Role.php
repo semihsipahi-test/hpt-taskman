@@ -46,7 +46,7 @@ class Role
      *
      * @return Role
      */
-    public function setRoleName($name)
+    public function setName($name)
     {
         $this->name = $name;
 
@@ -58,7 +58,7 @@ class Role
      *
      * @return string
      */
-    public function getRoleName()
+    public function getName()
     {
         return $this->name;
     }
