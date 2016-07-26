@@ -91,6 +91,10 @@ class User
      */
     private $role;
 
+    public function getRole()
+    {
+        return $this->role;
+    }
 
     /**
      * Get id
