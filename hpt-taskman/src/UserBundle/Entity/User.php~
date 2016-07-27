@@ -1,0 +1,92 @@
+<?php
+
+namespace UserBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User
+ *
+ * @ORM\Table(name="tm_users")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\UserRepository")
+ */
+class User
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="role_id", type="integer")
+     */
+    private $roleId;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="team_id", type="integer")
+     */
+    private $teamId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="surname", type="string", length=255)
+     */
+    private $surname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255)
+     */
+    private $email;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_date", type="datetime")
+     */
+    private $createdDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modification_date", type="datetime")
+     */
+    private $modificationDate;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Role", mappedBy="user" , cascade={"persist", "remove"})
+     */
+    private $role;
+}

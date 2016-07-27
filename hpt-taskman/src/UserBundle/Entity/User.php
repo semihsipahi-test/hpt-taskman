@@ -2,6 +2,7 @@
 
 namespace UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -84,21 +85,16 @@ class User
      */
     private $isActive;
 
-
     /**
-     * @ORM\ManyToOne(targetEntity="Role")
-     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Role")
+     * @ORM\JoinColumn(name="role_id" , referencedColumnName="id")
      */
     private $role;
-
-
-    //////////////////////GETTER AND SETTER
-
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -122,7 +118,7 @@ class User
     /**
      * Get roleId
      *
-     * @return int
+     * @return integer
      */
     public function getRoleId()
     {
@@ -146,7 +142,7 @@ class User
     /**
      * Get teamId
      *
-     * @return int
+     * @return integer
      */
     public function getTeamId()
     {
@@ -314,7 +310,7 @@ class User
     /**
      * Get isActive
      *
-     * @return bool
+     * @return boolean
      */
     public function getIsActive()
     {
@@ -322,23 +318,26 @@ class User
     }
 
     /**
+     * Set role
+     *
+     * @param \UserBundle\Entity\Role $role
+     *
+     * @return User
+     */
+    public function setRole(\UserBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    /**
      * Get role
      *
-     * @return Role
+     * @return \UserBundle\Entity\Role
      */
     public function getRole()
     {
         return $this->role;
     }
-
-    /**
-     * Set role
-     *
-     * @return Role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
 }
-

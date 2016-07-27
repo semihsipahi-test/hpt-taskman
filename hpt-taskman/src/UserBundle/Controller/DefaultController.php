@@ -2,13 +2,13 @@
 
 namespace UserBundle\Controller;
 
-use Doctrine\ORM\Query\ResultSetMapping;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Validator\Constraints\DateTime;
+use UserBundle\Entity\Role;
 use UserBundle\Entity\User;
-use UserBundle\Repository\RoleRepository;
+
+
 
 class DefaultController extends Controller
 {
@@ -17,7 +17,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        $roles = $this->getDoctrine()->getRepository('UserBundle:Role')->findAll();
+        //call repository function
+        $roles = $this->getDoctrine()->getRepository('UserBundle:Role')->getAllRoles();
+
         return $this->render('UserBundle:Default:index.html.twig', ['roles' => $roles]);
     }
 
@@ -38,9 +40,8 @@ class DefaultController extends Controller
         //default values
         $user->setTeamId(0);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+        //call repository function
+        $this->getDoctrine()->getRepository('UserBundle:User')->addUser($user);
 
         return $this->redirect($this->generateUrl('list-user'));
     }
@@ -50,11 +51,7 @@ class DefaultController extends Controller
      */
     public function removeUserAction($id)
     {
-        $user = $this->getDoctrine()->getRepository('UserBundle:User')->find($id);
-        $em = $this->getDoctrine()->getEntityManager();
-        $em->remove($user);
-        $em->flush();
-
+        $this->getDoctrine()->getRepository('UserBundle:User')->removeUser($id);
         return $this->redirect($this->generateUrl('list-user'));
     }
 
@@ -63,8 +60,8 @@ class DefaultController extends Controller
      */
     public function updateUserAction($id)
     {
-        $user = $this->getDoctrine()->getRepository('UserBundle:User')->find($id);
-        $roles = $this->getDoctrine()->getRepository('UserBundle:Role')->findAll();
+        $user = $this->getDoctrine()->getRepository('UserBundle:User')->getUser($id);
+        $roles = $this->getDoctrine()->getRepository('UserBundle:Role')->getAllRoles();
 
         return $this->render('UserBundle:Default:user-update.html.twig', ['roles' => $roles, 'user' => $user]);
     }
@@ -74,14 +71,7 @@ class DefaultController extends Controller
      */
     public function listUsersAction()
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $qb = $em->createQueryBuilder();
-        $users = $qb
-            ->select(array('u', 'r'))
-            ->from('UserBundle:User', 'u')
-            ->join('u.role', 'r')->getQuery()->execute();
-
+        $users = $this->getDoctrine()->getRepository('UserBundle:User')->getAllUsers();
         return $this->render('UserBundle:Default:user-list.html.twig', ['users' => $users]);
     }
 }
