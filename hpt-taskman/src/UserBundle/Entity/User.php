@@ -91,10 +91,9 @@ class User
      */
     private $role;
 
-    public function getRole()
-    {
-        return $this->role;
-    }
+
+    //////////////////////GETTER AND SETTER
+
 
     /**
      * Get id
@@ -320,6 +319,26 @@ class User
     public function getIsActive()
     {
         return $this->isActive;
+    }
+
+    /**
+     * Get role
+     *
+     * @return Role
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * Set role
+     *
+     * @return Role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
     }
 }
 
