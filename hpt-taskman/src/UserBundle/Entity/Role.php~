@@ -28,12 +28,13 @@ class Role
      */
     private $name;
 
-
     /**
-     * @ORM\OneToOne(targetEntity="User",mappedBy="role")
+     * @ORM\OneToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="role_id" , referencedColumnName="id")
      */
-    protected $user;
 
+    protected $user;
+    
 
     /**
      * Get id
@@ -67,29 +68,5 @@ class Role
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set user
-     *
-     * @param \UserBundle\Entity\User $user
-     *
-     * @return Role
-     */
-    public function setUser(\UserBundle\Entity\User $user = null)
-    {
-        $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * Get user
-     *
-     * @return \UserBundle\Entity\User
-     */
-    public function getUser()
-    {
-        return $this->user;
     }
 }
