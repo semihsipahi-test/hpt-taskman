@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        //call repository function
+        //call repository function by test user
         $roles = $this->getDoctrine()->getRepository('UserBundle:Role')->getAllRoles();
 
         return $this->render('UserBundle:Default:index.html.twig', ['roles' => $roles]);
